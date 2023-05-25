@@ -1,3 +1,5 @@
+from flask import jsonify
+
 from src.conexionbdd.databaseConexion import cur, conn
 
 
@@ -17,10 +19,10 @@ def add_user(username, pdw):
     return True
 
 def add_post(username, content):
-    cur.execute("SELECT id FROM `usuarios` WHERE username=%s", (username))
+    cur.execute("SELECT * FROM `usuarios` WHERE username=%s;", (username,))
     data = cur.fetchall()
     user_id = data[0][0]
-    cur.execute(("INSERT INTO `tweets` (`id`, `user_id`, `content`, `fecha_creacion`) VALUES (NULL, %s, %s, current_timestamp());", (user_id, content)))
+    cur.execute("INSERT INTO `tweets` (`id`, `user_id`, `content`, `fecha_creacion`) VALUES (NULL, %s, %s, current_timestamp());;", (user_id, content))
     conn.commit()
     return True
 

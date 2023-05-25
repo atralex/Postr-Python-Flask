@@ -5,7 +5,6 @@ from src.conexionbdd import useCasesDatabase as db
 
 def get_users():
     users = []
-    db.add_post()
     data = db.get_users()
     for row in data:
         user = User
