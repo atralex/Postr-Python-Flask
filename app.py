@@ -44,11 +44,10 @@ def add_post():
     content = post['content']
     return postUseCases.add_post(username, content)
 
-
-@app.route('/api/getPostsById/<int:id>')
+@app.route('/api/listPostById/<string:username>')
 @cross_origin()
-def get_post_by_id(id):  # put application's code here
-    return postUseCases.get_posts_by_id(id)
+def list_post_by_id(username):
+    return postUseCases.get_posts_by_username(username)
 
 
 if __name__ == '__main__':

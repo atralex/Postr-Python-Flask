@@ -8,15 +8,18 @@ def get_users():
     data = cur.fetchall()
     return data
 
+
 def login_user(username, pdw):
     cur.execute("SELECT * FROM `usuarios` WHERE username=%s AND pdw=%s;", (username, pdw))
     data = cur.fetchall()
     return data
 
+
 def add_user(username, pdw):
     cur.execute("INSERT INTO `usuarios` (id, username, pdw) VALUES (NULL, %s, %s);", (username, pdw))
     conn.commit()
     return True
+
 
 def add_post(username, content):
     cur.execute("SELECT * FROM `usuarios` WHERE username=%s;", (username,))
@@ -26,7 +29,11 @@ def add_post(username, content):
     conn.commit()
     return True
 
-def get_post_by_id(id):
-    cur.execute("SELECT * FROM `tweets` WHERE user_id=%s;", id)
+
+def get_post_by_username(username):
+    cur.execute("SELECT * FROM `usuarios` WHERE username=%s;", (username,))
+    user = cur.fetchall()
+    user_id = user[0][0]
+    cur.execute("SELECT * FROM `tweets` WHERE user_id=%s;", (user_id,))
     data = cur.fetchall()
     return data
