@@ -8,6 +8,7 @@ def login(username, pdw):
     newUser.set_pdw(pdw)
     if db.login_user(newUser.get_username(), newUser.get_pdw()):
         return {
+            'status': 200,
             'message': 'Inicio exitoso',
             'token': 'Token Generado'
         }

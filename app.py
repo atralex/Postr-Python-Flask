@@ -12,7 +12,7 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173", "allow_head
 
 @app.route('/api/entities')
 @cross_origin()
-def hello_world():  # put application's code here
+def get_all_entities():  # put application's code here
     return userUC.get_users()
 
 
@@ -44,9 +44,9 @@ def add_post():
     content = post['content']
     return postUseCases.add_post(username, content)
 
-@app.route('/api/listPostById/<string:username>')
+@app.route('/api/listPostByUsername/<string:username>')
 @cross_origin()
-def list_post_by_id(username):
+def list_post_by_username(username):
     return postUseCases.get_posts_by_username(username)
 
 
