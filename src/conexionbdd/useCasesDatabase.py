@@ -37,3 +37,8 @@ def get_post_by_username(username):
     cur.execute("SELECT * FROM `tweets` WHERE user_id=%s;", (user_id,))
     data = cur.fetchall()
     return data
+
+def try_get_user_by_username(username):
+    cur.execute("SELECT * FROM `usuarios` WHERE username=%s;", (username,))
+    data = cur.fetchall()
+    return data
